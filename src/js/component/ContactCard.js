@@ -1,17 +1,40 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export const Navbar = () => {
-	return (
-		<nav className="navbar navbar-light bg-light mb-3">
-			<Link to="/">
-				<span className="navbar-brand mb-0 h1">React Boilerplate</span>
-			</Link>
-			<div className="ml-auto">
-				<Link to="/demo">
-					<button className="btn btn-primary">Check the Context in action</button>
-				</Link>
-			</div>
-		</nav>
-	);
+export const ContactCard = (props) => {
+  return (
+    <div className="card">
+      <div className="card-body d-flex">
+        <div className="picture">
+          <img
+            className="headshot"
+            src="https://e9g2x6t2.rocketcdn.me/wp-content/uploads/2021/04/linkedin-Headshots.png"
+            alt="image cap"
+          ></img>
+        </div>
+        <div className="content">
+          <div className="card-text">
+            <h5>{props.fullname}</h5>
+          </div>
+          <div className="address">
+            <i class="fa-solid fa-location-dot"></i> {props.address}
+          </div>
+          <div className="phone">
+            <i class="fa-solid fa-phone"></i> {props.phone}
+          </div>
+          <div className="email">
+            <i class="fa-solid fa-envelope"></i> {props.email}
+          </div>
+          <div className="edit button">
+            <i class="fa-solid fa-pen"></i>
+          </div>
+          <div className="trashcan">
+            <i class="fa-solid fa-trash"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
+
+export default ContactCard;

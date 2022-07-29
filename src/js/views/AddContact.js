@@ -2,11 +2,11 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
-
+import { createBrowserHistory } from 'history';
 import "../../styles/demo.css";
 
 export const AddContact = () => {
-	let history = useHistory()
+	const history = useHistory();
 	const { store, actions } = useContext(Context);
 	const [contact, setContact] = useState({
 		fullName: "",
@@ -22,8 +22,9 @@ export const AddContact = () => {
 			[name]:value
 		});
 	}
-	const handleSubmit = e => {
-		e.preventDefault(); 
+	function handleSubmit() {
+		// e.preventDefault(); 
+		console.log("inside handleSubmit")
 		actions.addContact(contact)
 		history.push("/")
 	}
@@ -31,7 +32,7 @@ export const AddContact = () => {
 	console.log(contact)
 	return (
 		<div className="container">
-			<form onSubmit={handleSubmit}>
+			<form >
 				<label> Full Name
 					<input name="fullName" value={contact.fullName} onChange={handleInputChange}/>
 				</label>
@@ -45,7 +46,7 @@ export const AddContact = () => {
 					<input name="phone" value={contact.phone} onChange={handleInputChange}/>
 				</label>
 			</form>
-			<button type="submit">
+			<button onClick={() => {handleSubmit()}}>
 				submit
 			</button>
 		</div>

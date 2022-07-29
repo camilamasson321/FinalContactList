@@ -1,21 +1,20 @@
-import React, { useState, useEffect, useContext } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
+import Contacts from "/workspace/FinalContactList/src/js/component/Contacts.js"
 
-export const ContactList = props => {
-	const { store, actions } = useContext(Context);
-	const params = useParams();
+export const ContactList = ()=> {
+
 	return (
 		<div className="jumbotron">
 
 			<hr className="my-4" />
-
-			<Link to="/">
+			<Link to="/add">
 				<span className="btn btn-primary btn-lg" href="#" role="button">
-					Back home
+					Add Contact
 				</span>
 			</Link>
+			< Contacts/>
 		</div>
 	);
 };

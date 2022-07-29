@@ -1,7 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
-		contacts: [],
+      contacts: [],
       demo: [
         {
           title: "FIRST",
@@ -21,32 +21,33 @@ const getState = ({ getStore, getActions, setStore }) => {
           "https://assets.breatheco.de/apis/fake/contact/agenda/camila_contact_list"
         )
           .then((response) => response.json())
-          .then((result) => getStore(setStore({contacts:result})))
+          .then((result) => getStore(setStore({ contacts: result })))
           .catch((error) => console.log("error", error));
       },
 
-      addContact: (contact) => {
+      addContact: ({fullName, email, address, phone}) => {
+        console.log({fullName, email, address, phone});
         fetch("https://assets.breatheco.de/apis/fake/contact/", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            full_name: contact.name,
-            email: contact.email,
+            full_name: fullName,
+            email: email,
             agenda_slug: "camila_contact_list",
-            address: contact.address,
-            phone: contact.phone,
+            address: address,
+            phone: phone,
           }),
         })
-		.then (res => {
-			if (!res.ok){
-				throw new Error ("error");
-			}
-		})
-          .then(()=>{
-			getActions().getContacts();
-		  })
+          .then (res => {
+          	if (!res.ok){
+          		throw new Error ("error");
+          	}
+          })
+          .then(() => {
+            getActions().getContacts();
+          })
 
           .catch((error) => console.log("error", error));
       },

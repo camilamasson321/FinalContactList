@@ -7,8 +7,9 @@ import { AddContact } from "./views/AddContact";
 import { ContactList } from "./views/ContactList";
 import injectContext from "./store/appContext";
 
+import { ContactCard } from "./component/ContactCard";
 import { Navbar } from "./component/navbar";
-import { Footer } from "./component/ContactList";
+import { Footer } from "./component/footer";
 
 //create your first component
 const Layout = () => {
