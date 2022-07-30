@@ -52,34 +52,30 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       editContact: (contact, id) => {
-        fetch(`https://assets.breatheco.de/apis/fake/contact/agenda/${id}`, {
+        fetch(`https://assets.breatheco.de/apis/fake/contact/${contact.id}`, {
           method: "PUT",
-          body: JSON.stringify(contact),
           headers: {
             "Content-Type": "application/json",
           },
+          body: JSON.stringify(contact),
         })
-          .then((response) => response.json())
-          .then((data) => {
-            console.log(data);
-            getData();
-          })
+          .then((response) =>
+            response.status === 200 ? getActions().getContacts() : ""
+          )
           .catch((error) => console.log("error", error));
       },
 
       deleteContact: (id) => {
-        fetch(`https://assets.breatheco.de/apis/fake/contact/agenda/${id}`, {
+        fetch(`https://assets.breatheco.de/apis/fake/contact/${id}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
           },
         })
-          .then((response) => response.json())
-          .then((data) => {
-            console.log(data);
-            getData();
-          })
-          .catch((error) => console.log("error", error));
+        .then((response)=> {
+          response.status=== 200 ? getActions().getContacts(): ""
+        })
+        .catch((error) => console.log("error", error));
       },
 
       // Use getActions to call a function within a fuction

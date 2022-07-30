@@ -1,45 +1,53 @@
-import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router-dom";
 
 export const EditContact = () => {
   const { store, actions } = useContext(Context);
-
+  const history = useHistory()
   //grab param from weblink
   let { id } = useParams();
-
+  const [contact, setContact] = useState({
+    full_name: "",
+    address: "",
+    phone: "",
+    email: "",
+    agenda_slug: "camila_contact_list",
+  });
   const getContact = store.contacts;
   //Filter contact and only get object containing id
   const editContact = getContact.filter((contact, index) => {
     return contact.id === id;
   })[0];
 
-  //Populate fields with contact details
-  // const [textEntered, setTextEntered] = useState({
-  //   full_name: editContact.full_name,
-  //   address: editContact.address,
-  //   phone: editContact.phone,
-  //   email: editContact.email,
-  // });
+  useEffect(() => {
+    if (editContact) {
+      setContact(editContact);
+    }
+  }, [editContact]);
 
-  function inputValue(e) {
-    const { name, value } = e.target;
-    setTextEntered((prevValue) => {
-      return {
-        ...prevValue,
-        [name]: value,
-      };
-    });
-  }
+  // function inputValue(e) {
+  //   const { name, value } = e.target;
+  //   setTextEntered((prevValue) => {
+  //     return {
+  //       ...prevValue,
+  //       [name]: value,
+  //     };
+  //   });
+  // }
   const handleSubmit = (event) => {
+    if (contact !== ""){
+      actions.editContact(contact);
+      history.push("/")
+    }
     event.preventDefault();
-    actions.editContact(textEntered, id);
-    setTextEntered({
-      full_name: "",
+    setContact({
+      fullName: "",
       address: "",
       phone: "",
       email: "",
+      agenda_slug:"camila_contact_list"
     });
   };
 
@@ -47,23 +55,35 @@ export const EditContact = () => {
     <div className="input-body">
       <h1>Edit Contact</h1>
       <form onSubmit={handleSubmit}>
-        {/* {inputValues.map((item) => {
-          return (
-            <div key={item.value} className="contact-inputs">
-              <h4>{item.placeholder}</h4>
-              <input
-                className="w-100"
-                type={item.type}
-                name={item.name}
-                placeholder={item.placeholder}
-                onChange={inputValue}
-                value={textEntered[item.name]}
-              />
-            </div>
-          );
-        })} */}
+        <input
+          type="text"
+          value={contact.full_name}
+          onChange={(e) => setContact({ ...contact, full_name: e.target.value })}
+        ></input>
+        <input
+          type="text"
+          value={contact.address}
+          onChange={(e) => setContact({ ...contact, address: e.target.value })}
+        ></input>
+        <input
+          type="text"
+          value={contact.phone}
+          onChange={(e) => setContact({ ...contact, phone: e.target.value })}
+        ></input>
+        <input
+          type="text"
+          value={contact.email}
+          onChange={(e) => setContact({ ...contact, email: e.target.value })}
+        ></input>
         <button className="btn btn-primary input-links">Save</button>
       </form>
+      <button
+        onClick={() => {
+          handleSubmit();
+        }}
+      >
+        submit
+      </button>
       <Link to="/">
         <span className="input-links" href="#" role="button">
           Get back to contacts

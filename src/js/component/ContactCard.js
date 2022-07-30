@@ -1,7 +1,12 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 const ContactCard = (props) => {
+  const { store, actions } = useContext(Context);
+  function del(id){
+    actions.deleteContact(id)
+  }
   return (
     <div className="card">
       <div className="card-body d-flex">
@@ -26,10 +31,12 @@ const ContactCard = (props) => {
             <i className="fa-solid fa-envelope"></i> {props.email}
           </div>
           <div className="edit button">
-            <Link to={`edit/${props.id}`}>
+            <Link to={`/add/${props.id}`}>
               <i className="fa-solid fa-pen"></i>
             </Link>
-            <i className="fa-solid fa-trash"></i>
+            <button onClick={()=> del(props.id)}>
+              <i className="fa-solid fa-trash"></i>
+            </button>
           </div>
         </div>
       </div>
