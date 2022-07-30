@@ -25,8 +25,8 @@ const getState = ({ getStore, getActions, setStore }) => {
           .catch((error) => console.log("error", error));
       },
 
-      addContact: ({fullName, email, address, phone}) => {
-        console.log({fullName, email, address, phone});
+      addContact: ({ fullName, email, address, phone }) => {
+        console.log({ fullName, email, address, phone });
         fetch("https://assets.breatheco.de/apis/fake/contact/", {
           method: "POST",
           headers: {
@@ -40,20 +40,47 @@ const getState = ({ getStore, getActions, setStore }) => {
             phone: phone,
           }),
         })
-          .then (res => {
-          	if (!res.ok){
-          		throw new Error ("error");
-          	}
+          .then((res) => {
+            if (!res.ok) {
+              throw new Error("error");
+            }
           })
           .then(() => {
             getActions().getContacts();
           })
-
           .catch((error) => console.log("error", error));
       },
 
-      editContact: () => {},
-      deleteContact: () => {},
+      editContact: (contact, id) => {
+        fetch(`https://assets.breatheco.de/apis/fake/contact/agenda/${id}`, {
+          method: "PUT",
+          body: JSON.stringify(contact),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            getData();
+          })
+          .catch((error) => console.log("error", error));
+      },
+
+      deleteContact: (id) => {
+        fetch(`https://assets.breatheco.de/apis/fake/contact/agenda/${id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            getData();
+          })
+          .catch((error) => console.log("error", error));
+      },
 
       // Use getActions to call a function within a fuction
       exampleFunction: () => {

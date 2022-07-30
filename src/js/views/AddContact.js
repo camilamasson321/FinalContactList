@@ -1,11 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
-import { createBrowserHistory } from 'history';
 import "../../styles/demo.css";
 
-export const AddContact = () => {
+const AddContact = () => {
 	const history = useHistory();
 	const { store, actions } = useContext(Context);
 	const [contact, setContact] = useState({
@@ -29,7 +27,6 @@ export const AddContact = () => {
 		history.push("/")
 	}
 
-	console.log(contact)
 	return (
 		<div className="container">
 			<form >
@@ -52,3 +49,5 @@ export const AddContact = () => {
 		</div>
 	);
 };
+
+export default AddContact;

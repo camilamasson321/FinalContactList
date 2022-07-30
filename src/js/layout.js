@@ -2,12 +2,11 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
-import { EditContact } from "./views/EditContact";
-import { AddContact } from "./views/AddContact";
-import { ContactList } from "./views/ContactList";
+import { EditContact } from "./views/EditContact.js";
+import AddContact from "./views/AddContact.js";
+import { ContactList } from "./views/ContactList.js";
 import injectContext from "./store/appContext";
 
-import { ContactCard } from "./component/ContactCard";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 

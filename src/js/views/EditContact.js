@@ -16,12 +16,12 @@ export const EditContact = () => {
   })[0];
 
   //Populate fields with contact details
-  const [textEntered, setTextEntered] = useState({
-    full_name: editContact.full_name,
-    address: editContact.address,
-    phone: editContact.phone,
-    email: editContact.email,
-  });
+  // const [textEntered, setTextEntered] = useState({
+  //   full_name: editContact.full_name,
+  //   address: editContact.address,
+  //   phone: editContact.phone,
+  //   email: editContact.email,
+  // });
 
   function inputValue(e) {
     const { name, value } = e.target;
@@ -47,7 +47,7 @@ export const EditContact = () => {
     <div className="input-body">
       <h1>Edit Contact</h1>
       <form onSubmit={handleSubmit}>
-        {inputValues.map((item) => {
+        {/* {inputValues.map((item) => {
           return (
             <div key={item.value} className="contact-inputs">
               <h4>{item.placeholder}</h4>
@@ -61,7 +61,7 @@ export const EditContact = () => {
               />
             </div>
           );
-        })}
+        })} */}
         <button className="btn btn-primary input-links">Save</button>
       </form>
       <Link to="/">

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export const ContactCard = (props) => {
+const ContactCard = (props) => {
   return (
     <div className="card">
       <div className="card-body d-flex">
@@ -17,19 +17,19 @@ export const ContactCard = (props) => {
             <h5>{props.fullname}</h5>
           </div>
           <div className="address">
-            <i class="fa-solid fa-location-dot"></i> {props.address}
+            <i className="fa-solid fa-location-dot"></i> {props.address}
           </div>
           <div className="phone">
-            <i class="fa-solid fa-phone"></i> {props.phone}
+            <i className="fa-solid fa-phone"></i> {props.phone}
           </div>
           <div className="email">
-            <i class="fa-solid fa-envelope"></i> {props.email}
+            <i className="fa-solid fa-envelope"></i> {props.email}
           </div>
           <div className="edit button">
-            <i class="fa-solid fa-pen"></i>
-          </div>
-          <div className="trashcan">
-            <i class="fa-solid fa-trash"></i>
+            <Link to={`edit/${props.id}`}>
+              <i className="fa-solid fa-pen"></i>
+            </Link>
+            <i className="fa-solid fa-trash"></i>
           </div>
         </div>
       </div>
