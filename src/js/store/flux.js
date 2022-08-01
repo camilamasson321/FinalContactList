@@ -26,7 +26,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       addContact: ({ fullName, email, address, phone }) => {
-        console.log({ fullName, email, address, phone });
+        // console.log({ fullName, email, address, phone });
         fetch("https://assets.breatheco.de/apis/fake/contact/", {
           method: "POST",
           headers: {

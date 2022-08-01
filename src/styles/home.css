@@ -1,0 +1,27 @@
+.card{
+    width: 90rem;
+    margin: auto;
+    background-color: rgb(247, 245, 248);
+}
+
+img{
+    border-radius: 50%;
+    width: 10rem;
+    height: 10rem;
+    border: 7px solid rgb(150, 151, 149);
+    margin-right: 20px;
+}
+
+.input-body{
+    text-align: center;
+    width: 100%;
+}
+
+button {
+    margin-top: 10px;
+}
+.card-buttons{
+    display: flex;
+    justify-content: end;
+}
+

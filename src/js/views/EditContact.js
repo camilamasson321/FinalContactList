@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 
 export const EditContact = () => {
   const { store, actions } = useContext(Context);
-  const history = useHistory()
+  const history = useHistory();
   //grab param from weblink
   let { id } = useParams();
   const [contact, setContact] = useState({
@@ -37,17 +37,17 @@ export const EditContact = () => {
   //   });
   // }
   const handleSubmit = (event) => {
-    if (contact !== ""){
+    if (contact !== "") {
       actions.editContact(contact);
-      history.push("/")
+      history.push("/");
     }
     event.preventDefault();
     setContact({
       fullName: "",
+      email: "",
       address: "",
       phone: "",
-      email: "",
-      agenda_slug:"camila_contact_list"
+      agenda_slug: "camila_contact_list",
     });
   };
 
@@ -55,39 +55,73 @@ export const EditContact = () => {
     <div className="input-body">
       <h1>Edit Contact</h1>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={contact.full_name}
-          onChange={(e) => setContact({ ...contact, full_name: e.target.value })}
-        ></input>
-        <input
-          type="text"
-          value={contact.address}
-          onChange={(e) => setContact({ ...contact, address: e.target.value })}
-        ></input>
-        <input
-          type="text"
-          value={contact.phone}
-          onChange={(e) => setContact({ ...contact, phone: e.target.value })}
-        ></input>
-        <input
-          type="text"
-          value={contact.email}
-          onChange={(e) => setContact({ ...contact, email: e.target.value })}
-        ></input>
-        <button className="btn btn-primary input-links">Save</button>
+        <div className="form-group">
+          <label>
+            Full Name
+            <input
+              className="form-control"
+              type="text"
+              value={contact.full_name}
+              onChange={(e) =>
+                setContact({ ...contact, full_name: e.target.value })
+              }
+            ></input>
+          </label>
+        </div>
+
+        <div className="form-group">
+          <label>
+            Email
+            <input
+              className="form-control"
+              type="text"
+              value={contact.email}
+              onChange={(e) =>
+                setContact({ ...contact, email: e.target.value })
+              }
+            ></input>
+          </label>
+        </div>
+
+        <div className="form-group">
+          <label>
+            Address
+            <input
+              className="form-control"
+              type="text"
+              value={contact.address}
+              onChange={(e) =>
+                setContact({ ...contact, address: e.target.value })
+              }
+            ></input>
+          </label>
+        </div>
+        <div className="form-group">
+          <label>
+            Phone Number
+            <input
+              className="form-control w-80"
+              type="text"
+              value={contact.phone}
+              onChange={(e) =>
+                setContact({ ...contact, phone: e.target.value })
+              }
+            ></input>
+          </label>
+        </div>
       </form>
       <button
+        className="btn btn-primary me-1"
         onClick={() => {
           handleSubmit();
         }}
       >
-        submit
+        Save
       </button>
       <Link to="/">
-        <span className="input-links" href="#" role="button">
+        <button className="btn btn-primary " href="#" role="button">
           Get back to contacts
-        </span>
+        </button>
       </Link>
     </div>
   );

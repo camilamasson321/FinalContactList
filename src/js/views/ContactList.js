@@ -7,7 +7,7 @@ export const ContactList = ()=> {
 		<div className="jumbotron">
 			<hr className="my-4" />
 			<Link to="/add">
-				<span className="btn btn-primary btn-lg" role="button">
+				<span className="btn btn-primary btn-lg mb-2 mx-5" role="button">
 					Add Contact
 				</span>
 			</Link>
